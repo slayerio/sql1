@@ -1,0 +1,97 @@
+# 1
+create a table named shoping, with columns: "id" as unique, "name as str", "amount of products as int"
+and drops it
+# 2
+renames table from shoping to shopp, then changes it back
+# 3
+inserts rows of info matched to do columns (id, name, amount)
+# 4
+display all 'shoping' table
+# 5 
+display data, name columns from shoping
+# 6
+display rows chocolate, orange, then row milk, than row bamba
+# 7
+deletes orange column
+# 8
+updates name bamba to bisli
+updates amount 1 in milk column
+# 9
+adds a column to the shopping table
+# 10
+adds different values to maavar for each raw
+# 11
+displays avocado, bread and chocolate rows
+displays avocado, bread, bamba
+# 12
+displays table sorted from lowest to highst maavar int
+the second code displays sorted table from highest to lowest
+# 13
+new table "books"- columns id, name
+adds 2 new rows to book
+deletes all the rows
+# 14
+displays tables row lenght
+displays biggest product amount, avg amount and then smallest amount
+# 15
+DISPLAYS maavar sorted column and a column for the count of the same numbers in maavar
+# 16
+displays the table with the change of title id -> "SECRET"
+# 17
+displays column of maavar values sorted that are more than once in the table
+# 18
+create new price table (id, price)
+adds new value rows 
+s. value = shopping value, p. value = price value |shopping as s|, |price as p|
+displays all columns of shopping and price together(joined); and the base is the id (ON s. id=p. id)
+# 19
+same as before, but adds new column of (amount * price) giving the total price for each procucts amount, title displayed as "SECRET"
+# 20
+same as #18, but only displays the row of the product with the highest price rate
+
+
+#####
+# 1
+CREATE TABLE students (id INTEGER PRIMARY KEY, name TEXT, city TEXT, birth
+INTEGER)
+CREATE TABLE grades (id INTEGER PRIMARY KEY, grades INTEGER)
+
+# 2
+INSERT INTO grades VALUES (1, 95);
+INSERT INTO grades VALUES (2, 70);
+INSERT INTO grades VALUES (3, 85);
+INSERT INTO grades VALUES (4, 99);
+INSERT INTO grades VALUES (5, 91);
+
+INSERT INTO students VALUES (1, 'SHALOM', 'TEL AVIV', 1974 );
+INSERT INTO grades VALUES (2, 'YURI', 'RAANANA', 1980);
+INSERT INTO grades VALUES (3, 'ANAT', 'RISHON', 1994);
+INSERT INTO grades VALUES (4, 'DANA', 'REHOVOT', 1990);
+INSERT INTO grades VALUES (5, 'OMER', 'JERUSALEM', 1987);
+
+SELECT s.id, s.name, s.city, s.birth, g.grades FROM students s JOIN
+grades g ON s.id=g.id
+
+# 3
+SELECT AVG(grades) FROM grades
+
+# 4
+ALTER TABLE students ADD COLUMN excellent
+UPDATE students
+SET excellent = (
+  SELECT 
+  	CASE 
+	    WHEN grades > 90 THEN 'YES'
+      ELSE 'NO'
+	  END
+  FROM grades g
+WHERE g.id = students.id
+);
+
+# 5
+SELECT s.id, s.name, s.city, s.birth, g.grades FROM students s JOIN
+grades g ON s.id=g.id WHERE g.grades > (SELECT avg(grades) FROM grades)
+
+# 6
+SELECT s.id, s.name, s.city, s.birth, g.grades FROM students s JOIN
+grades g ON s.id=g.id WHERE g.grades = (SELECT max(grades) FROM grades)
